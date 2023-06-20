@@ -12,8 +12,8 @@ public class JpanelMatch extends JPanel implements ActionListener,ConstantMatch,
 		private Match match;
 		private JPanel jpnInput;
 		private JpanelField jpnField;
-		private JComboBox jcmbxCoordinataX;
-		private JComboBox jcmbxCoordinataY;
+		private JComboBox<Integer> jcmbxCoordinataX;
+		private JComboBox<Integer> jcmbxCoordinataY;
 		private JButton jbtnPlay;
 		private JLabel jlbState;
 		public JpanelMatch(){
@@ -29,10 +29,10 @@ public class JpanelMatch extends JPanel implements ActionListener,ConstantMatch,
 			for (int i=0 ;i<this.match.getField().getGroundDimension();i++){
 				values[i]=i;
 			}
-			this.jcmbxCoordinataX=new JComboBox(values);
-			this.jcmbxCoordinataY=new JComboBox(values);
+			this.jcmbxCoordinataX=new JComboBox<Integer>(values);
+			this.jcmbxCoordinataY=new JComboBox<Integer>(values);
 			this.jbtnPlay.addActionListener(this);
-			//aggiunta oggetti grafici ai pannelli
+			//ui build
 			this.jpnInput.add(jcmbxCoordinataX);
 			this.jpnInput.add(jcmbxCoordinataY);
 			this.jpnInput.add(jlbState);
@@ -46,8 +46,6 @@ public class JpanelMatch extends JPanel implements ActionListener,ConstantMatch,
 		}
 		public void actionPerformed(ActionEvent e){
 			if(e.getSource()==jbtnPlay){
-				int x=(int)jcmbxCoordinataX.getSelectedItem();
-				int y=(int)jcmbxCoordinataY.getSelectedItem();
 				
 				try{
 					int result =match.play((int)jcmbxCoordinataX.getSelectedItem(),(int)jcmbxCoordinataY.getSelectedItem());
